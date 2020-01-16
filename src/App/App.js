@@ -8,6 +8,7 @@ import 'firebase/auth';
 import firebaseConnection from '../helpers/data/connection';
 import MyNavbar from '../components/shared/MyNavbar/MyNavbar';
 import Auth from '../components/pages/Auth/Auth';
+import Home from '../components/pages/Home/Home';
 
 import './App.scss';
 
@@ -16,10 +17,10 @@ const PublicRoute = ({ component: Component, authed, ...rest }) => {
   return <Route {...rest} render={(props) => routeChecker(props)} />;
 };
 
-/* const PrivateRoute = ({ component: Component, authed, ...rest }) => {
+const PrivateRoute = ({ component: Component, authed, ...rest }) => {
   const routeChecker = (props) => (authed === true ? <Component {...props} {...rest}/> : <Redirect to={{ pathname: '/auth', state: { from: props.location } }} />);
   return <Route {...rest} render={(props) => routeChecker(props)} />;
-}; */
+};
 
 firebaseConnection();
 
@@ -49,7 +50,8 @@ class App extends React.Component {
         <Router>
           <MyNavbar authed={authed} />
           <Switch>
-            <PublicRoute path="/auth" exact component={Auth} authed={authed} />
+            <PublicRoute path='/auth' exact component={Auth} authed={authed} />
+            <PrivateRoute path='/' exact component={Home} authed={authed} />
           </Switch>
         </Router>
       </div>
