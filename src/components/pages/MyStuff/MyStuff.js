@@ -10,7 +10,7 @@ class MyStuff extends React.Component {
       <div className='MyStuff'>
         <h1>My Stuff</h1>
         <Link className='btn btn-warning' to={`/stuff/${stuffId}/edit`}>Edit</Link>
-        <button>Single</button>
+        <Link className='btn btn-primary' to={`/stuff/${stuffId}`}>Single</Link>
       </div>
     );
   }
